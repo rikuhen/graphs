@@ -1,15 +1,33 @@
 <template>
-    <div>
-        <div class="chart"></div>
-    </div>
+  <div>
+    <div class="chart"></div>
+  </div>
 </template>
 
 <script>
 const d3 = require("d3");
+const axios = require("axios");
+const DOMAIN = "https://mantis.guayas.gov.ec";
+axios.defaults.headers.common["Authorization"] =
+  "Ll-isJ9uF4Z8nQueNUOhy7-3Dzl0Q6O1";
+  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 export default {
+  data() {
+    return {
+      config: {
+        headers: { 
+          "Access-Control-Allow-Origin": "*" ,
+          "Authorization" : "Ll-isJ9uF4Z8nQueNUOhy7-3Dzl0Q6O1"
+        }
+      }
+    };
+  },
   methods: {
     loadData() {
-      var data = [30, 86, 168, 281, 303, 365];
+      axios.get(DOMAIN + "/api/rest/index.php/projects/").then(result => {
+        console.log(result);
+      });
+
       var t = d3
         .transition()
         .duration(750)
@@ -17,7 +35,7 @@ export default {
 
       d3.select(".chart")
         .selectAll("div")
-        .data(data)
+        .data([])
         .enter()
         .append("div")
         .transition(t)
@@ -30,7 +48,7 @@ export default {
     }
   },
   mounted() {
-      this.loadData()
-  },
+    this.loadData();
+  }
 };
 </script>
