@@ -1,9 +1,18 @@
+<style lang="scss">
+  .d3 img {
+    width: 38%;
+    display: block;
+    text-align: center;
+    margin: 14px auto;
+  }
+</style>
+
 <template>
     <div class="container">
     <div class="jumbotron">
       <h1 class="text-center">Componentes</h1>
       <div class="row">
-        <div class="col-md-4 col-12 card">
+        <div class="col-md-4 col-12 card d3">
           <img
             src="https://www.pikpng.com/pngl/b/150-1505989_file-logo-d3-svg-javascript-logo-vector-png.png"
             class="card-img-top"
@@ -51,3 +60,4 @@ export default {
     name: 'home'
 }
 </script>
+
